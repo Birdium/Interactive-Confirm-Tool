@@ -1,16 +1,30 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from input import Input
+from output import Output
+from program import Progpair
+from equality import Equality
+from queue import Queue
 
 
-# Press the green button in the gutter to run the script.
+equal_path = r'equal.csv'
+inequal_path = r'inequal.csv'
+
+output_path = 'output'
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    eq_list = Input.read(equal_path)
+    neq_list = Input.read(inequal_path)
+    eq_pairs = [Progpair(pair[0], pair[1], Equality.EQUAL_M) for pair in eq_list]
+    worklist = Queue(eq_pairs)
+    human_verified, doubt = [], []
+    while not worklist.empty():
+        pair = worklist.get()
+        # judge pair
+        if pair.get_eq() == Equality.NOT_EQUAL:
+            pass
+        elif pair.get_eq() == Equality.HUMAN_VERIFIED:
+            human_verified.append(pair)
+        elif pair.get_eq() == Equality.DOUBT:
+            doubt.append(pair)
+    o = Output([pair.get_list() for pair in eq_pairs], output_path)
+    o.write_csv()
