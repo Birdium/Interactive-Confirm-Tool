@@ -12,12 +12,7 @@ from equality import Equality
 from queue import Queue
 import ui
 
-
-equal_path = r'input/equal.csv'
-inequal_path = r'input/inequal.csv'
-
-output_path = 'output'
-
+os.putenv("QTWEBENGINE_CHROMIUM_FLAGS", "--no-sandbox")
 
 class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
 
@@ -45,7 +40,6 @@ class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
             self.show_diff(self.current_pair)
 
     def press(self, equality: Equality):
-        print("meow")
         if not self.current_pair is None:
             self.current_pair.eq = equality
             if equality == Equality.HUMAN_VERIFIED:
@@ -58,12 +52,7 @@ class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
 
     def show_diff(self, progpair):
         diff = progpair.diff()
-        print(1)
-        self.diff_render.load(QtCore.QUrl(r"https://www.baidu.com"))
-        # self.diff_render.setHtml(
-        #
-        # )
-        # self.diff_render.show()
+        self.diff_render.setHtml(diff)
 
     def load(self, fname):
         eq_name = os.path.join(fname, 'input/equal.csv')
