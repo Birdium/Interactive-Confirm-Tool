@@ -112,6 +112,15 @@ class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
             self.prog1_text.setText(self.current_pair.prog1)
             self.prog2_text.setText(self.current_pair.prog2)
             self.diff_render.setHtml(diff)
+            if self.current_pair.eq == Equality.EQUAL_M:
+                self.pair_category.setText("Machine Judged Equal")
+            elif self.current_pair.eq == Equality.NOT_EQUAL:
+                self.pair_category.setText("Not Equal")
+            elif self.current_pair.eq == Equality.HUMAN_VERIFIED:
+                self.pair_category.setText("Human Verified Equal")
+            elif self.current_pair.eq == Equality.DOUBT:
+                self.pair_category.setText("Doubt")
+
 
     def load(self, fname):
         eq_name = os.path.join(fname, 'input/equal.csv')
