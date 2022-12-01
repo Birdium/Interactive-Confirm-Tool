@@ -9,7 +9,7 @@ from collections import deque
 import ui
 
 os.putenv("QTWEBENGINE_CHROMIUM_FLAGS", "--no-sandbox")
-
+a = 1
 
 class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
 

@@ -13,21 +13,7 @@
 
 1. 在github上创建空项目:
 
-![](pic/github-new-repo.png)
-
-2. Clone到本地，现在SE-lab是一个包含了.git的文件夹（省去了在本地初始化的工作）
-
-3. 使用PyCharm打开，配置环境
-
-4. 设计基本的项目结构：我把整体项目**划分成了几个模块**：输入模块、输出模块、测试生成模块、比较模块、数据表示模块以及主模块。下图展示了最后生成的模块结构：
-   ![classes](/home/birdium/se-lab/pic/classes.png)
-   ![packages](/home/birdium/se-lab/pic/packages.png)
-
-5. 上面每一部分的开发在不同分支上进行，并最终merge到main分支上。（没有遇到过冲突，因为不同类的实现是在不同文件里的）
-
-   使用命令 `git checkout -b [branch]` 来建立新的分支，并用上面介绍的`git merge` 来合并。
-   `git log --all --oneline --all`显示如下：
-   ![git-log-all](/home/birdium/se-lab/pic/git-log-all.png)
+![](pic/github-repo.png)
 
 #### 三、Git使用
 
@@ -89,7 +75,10 @@
    ![](pic/git-after-rebase.png)
 
 5. `git stash`的使用：
-   
+   首先我删除了程序中的一行代码，使用`git stash`
+   ![](pic/stash.png)
+   这时候被删除的代码消失了。
+   此时我在原先代码上增加一行代码，然后运行 `git stash pop`，提示合并冲突，因为 `git stash pop` 能够恢复之前 `stash` 暂存的内容
 
 6. `git cherry-pick`的使用：
 
