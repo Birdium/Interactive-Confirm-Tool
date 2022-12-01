@@ -2,10 +2,7 @@ import os.path
 import sys
 from input import Input
 from output import Output
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from PyQt5.QtWebEngineWidgets import *
 from program import Progpair
 from equality import Equality
 from collections import deque
