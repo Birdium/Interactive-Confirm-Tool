@@ -30,30 +30,39 @@
 
 #### 三、Git使用
 
-1. git add:
-   ![git-add](/home/birdium/se-lab/pic/git-add.png)
-2. git commit:
-   ![git-commit](/home/birdium/se-lab/pic/git-commit.png)
-3. git reset (--hard 去掉所有add到暂存区的文件和工作区的文件)
-   ![git-reset(hard)](/home/birdium/se-lab/pic/git-reset(hard).png)
-4. 更新了一些基本文件后的 git status
-   ![git-status](/home/birdium/se-lab/pic/git-status.png)
-5. 某次修改(添加了一行`import`)后的git diff
-   ![git-diff](/home/birdium/se-lab/pic/git-diff.png)
-6. （扩展）git merge
-   ![git-merge](/home/birdium/se-lab/pic/git-merge.png)
-   可以看到, 在main分支下使用git merge input, 会在main中进行一个新的commit, 内容为input分支中修改的内容。除此之外的commit记录不会被改变。
-   而git rebase相比较之下，会将之前的commit全部删除，添加在底端，具体区别可见下面三张图(来源https://www.atlassian.com/git/tutorials/merging-vs-rebasing):
-   ![git-merge-rebase](/home/birdium/se-lab/pic/git-merge-rebase.png)
-   ![git-after-merge](/home/birdium/se-lab/pic/git-after-merge.png)
-   ![git-after-rebase](/home/birdium/se-lab/pic/git-after-rebase.png)
-   其中第一张图为操作前，第二张图为将main merge进feature, 第三张为将main rebase到feature
-7. git stash
-   当我写了一半，突然因为种种原因需要中断去写别的，这时候可以使用git stash将工作代码放到暂存区：
-   ![git-stash](/home/birdium/se-lab/pic/git-stash.png)
-   需要回复的时候，只需要使用git stash pop 指定 index，就可以获得暂存的工作代码
-8. git reset/revert
-   区别非常简单，git reset是回退到之前的commit, 而git revert是用一次新的commit来回滚之前的commit
+1. 我在本地尝试了修改操作：
+   修改前的代码：完成实验后我发现有些import的库并没有被使用，于是删除：
+   ![](pic/before-add.png)
+   这是删除后的代码：
+   ![](pic/after-add.png)
+   在Terminal运行 `git diff`:
+   ![](pic/diff-result.png)
+2. 尝试将刚才的修改提交：
+   首先运行 `git status` 查看当前状态：
+   ![](pic/status-result.png)
+   可以从图中看见所有modified的文件，这些文件是已经被commit了的文件，但被修改了。还有Untracked files，是还没有被添加进git的文件。
+   接下来我们运行 `git add main.py`，来把刚才对 `main.py` 文件的修改 commit 到 git 中。
+   然后再次运行 `git status` 查看状态：
+   ![](pic/after-add-status.png)
+   可以看到之前的 `main.py` 已经从工作区被添加到暂存区了。
+   接下来我们运行 `git commit`：进入 vim 界面，输入message并保存：
+   ![](pic/git-commit.png)
+
+   保存后我们运行 `git log`：
+   ![](pic/git-log.png)
+   就可以看到上次的提交情况了。
+3. 对于回退版本，我们有两种选择：`reset` 和 `revert`：
+   reset和revert的区别在于，reset是回退到git的某次commit, 在此commit之后的均被舍弃。
+   执行命令`git reset` 如下：
+   ![](pic/git-reset.png)
+   再次查看 `git log`，可以发现此前的提交不见了：
+   ![](pic/log-after-reset.png)
+   此时运行 `git reflog` 来查看所有的git操作：
+   ![](pic/git-reflog.png)
+   此时使用 `git reset cc6a` 即可恢复回`reset`前的状态。
+
+   同样地，我们也可以使用 `git revert 6ea0`：
+    
 
 #### 四、模块设计
 
