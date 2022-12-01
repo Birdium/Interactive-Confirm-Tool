@@ -9,7 +9,6 @@ from collections import deque
 import ui
 
 os.putenv("QTWEBENGINE_CHROMIUM_FLAGS", "--no-sandbox")
-a = 1
 
 class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
 
@@ -134,7 +133,7 @@ class ConfirmTool(QMainWindow, ui.Ui_MainWindow):
 
     def export(self, fname):
         # eq_name = os.path.join(fname, 'input/equal.csv')
-        o = Output(self.human_verified, fname)
+        o = Output(self.human_verified_pairs, fname)
         o.write_csv()
 
 

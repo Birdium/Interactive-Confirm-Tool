@@ -5,8 +5,8 @@ import csv
 class Output:
 
     def __init__(self, verified_pairs, output_dir):
-        self.__output_dir__ = output_dir
-        self.__verified_pairs__ = verified_pairs
+        self.__output_dir__ = os.path.join(output_dir, "output")
+        self.__verified_pairs__ = [pair.get_list() for pair in verified_pairs]
 
     def write_csv(self):
         if not os.path.exists(self.__output_dir__):
