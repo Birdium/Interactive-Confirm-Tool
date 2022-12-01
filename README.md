@@ -71,8 +71,25 @@
    由此可以发现，`git reset` 不保留reset后的commit，直接将HEAD置于目标位置，`git revert`则本质上相当于创建一个新的`commit`来恢复到之前的修改状态。
 
 4. 接下来我们来尝试 `merge` 与 `rebase` 。
+   首先我们把 `CLI` （命令行版本）merge到main分支里：
+   ![](pic/git-merge.png)
+   再查看`log`
+   ![](pic/log-after-merge.png)
+   可以看到CLI的内容被merge进了main，与之相对的是remote中的main(origin/main)
+
+   接下来我们尝试 `git rebase` 将GUI分支rebase到main：
+   ![](pic/git-rebase.png)
+   查看log:
+   ![](pic/log-after-rebase.png)
+
+   不过这里两个分支的merge都是直线形，并不太能体现其区别。如果有多个同时开发的分支，`git merge`会在图上显示出合并的路径，如实验4中：
+   ![](pic/git-log-all.png)
+   而 `git rebase` 就不会这样，它的行为如下图：
+   ![](pic/git-merge-rebase.png)
+   ![](pic/git-after-rebase.png)
 
 5. `git stash`的使用：
+   
 
 6. `git cherry-pick`的使用：
 
