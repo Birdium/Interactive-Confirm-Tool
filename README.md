@@ -38,6 +38,7 @@
    ![](pic/after-add.png)
    在Terminal运行 `git diff`:
    ![](pic/diff-result.png)
+
 2. 尝试将刚才的修改提交：
    首先运行 `git status` 查看当前状态：
    ![](pic/status-result.png)
@@ -52,6 +53,7 @@
    保存后我们运行 `git log`：
    ![](pic/git-log.png)
    就可以看到上次的提交情况了。
+
 3. 对于回退版本，我们有两种选择：`reset` 和 `revert`：
    reset和revert的区别在于，reset是回退到git的某次commit, 在此commit之后的均被舍弃。
    执行命令`git reset` 如下：
@@ -63,7 +65,16 @@
    此时使用 `git reset cc6a` 即可恢复回`reset`前的状态。
 
    同样地，我们也可以使用 `git revert 6ea0`：
-    
+   ![](pic/git-revert.png)
+   可以看到出现了错误，那是因为我们还有一些冲突没有解决，解决之后再次执行，可以发现`git log`变成了这样：
+   ![](pic/log-after-revert.png)
+   由此可以发现，`git reset` 不保留reset后的commit，直接将HEAD置于目标位置，`git revert`则本质上相当于创建一个新的`commit`来恢复到之前的修改状态。
+
+4. 接下来我们来尝试 `merge` 与 `rebase` 。
+
+5. `git stash`的使用：
+
+6. `git cherry-pick`的使用：
 
 #### 四、模块设计
 
